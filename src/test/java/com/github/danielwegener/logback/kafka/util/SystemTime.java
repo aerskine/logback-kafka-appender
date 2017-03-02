@@ -1,6 +1,6 @@
 package com.github.danielwegener.logback.kafka.util;
 
-import kafka.utils.Time;
+import org.apache.kafka.common.utils.Time;
 
 class SystemTime implements Time {
     public long milliseconds() {
@@ -17,5 +17,10 @@ class SystemTime implements Time {
         } catch (InterruptedException e) {
             // Ignore
         }
+    }
+
+    @Override
+    public long hiResClockMs() {
+        return 0;
     }
 }

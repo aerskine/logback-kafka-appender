@@ -72,7 +72,7 @@
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
-            <version>0.9.0.0</version>
+            <version>0.10.2.0</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
@@ -82,8 +82,8 @@
         </dependency>
         <dependency>
             <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka_2.11</artifactId>
-            <version>0.9.0.0</version>
+            <artifactId>kafka_2.12</artifactId>
+            <version>0.10.2.0</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
@@ -225,6 +225,22 @@
                 <configuration>
                     <repoToken>${COVERALL_TOKEN}</repoToken>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.4.3</version>
+                <configuration>
+                    <!-- put your configurations here -->
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
