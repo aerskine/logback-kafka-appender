@@ -1,8 +1,11 @@
 package com.github.danielwegener.logback.kafka.util;
 
+import kafka.metrics.KafkaMetricsReporter;
 import kafka.server.KafkaConfig;
 import kafka.server.KafkaServer;
+import org.apache.kafka.common.utils.Time;
 import scala.Some;
+import scala.collection.JavaConversions;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -89,7 +92,7 @@ public class EmbeddedKafkaCluster {
 
 
     private KafkaServer startBroker(Properties props) {
-        KafkaServer server = new KafkaServer(new KafkaConfig(props), new SystemTime(), Some.apply("embedded-kafka-cluster"));
+        KafkaServer server = new KafkaServer(new KafkaConfig(props), Time.SYSTEM, Some.apply("embedded-kafka-cluster"), JavaConversions.asScalaBuffer(new ArrayList<KafkaMetricsReporter>()).toSeq());
         server.startup();
         return server;
     }
